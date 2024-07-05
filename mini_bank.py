@@ -1,6 +1,7 @@
 # Initialize a dictionary to store balances
 balances = {}
 
+
 # Initialize a dictionary to store transaction history
 transaction_histories = {}
 
@@ -12,7 +13,6 @@ def deposit():
     if len(account_number) != 8:
         print("Enter a valid account number (8 digits long).")
         return
-
 
     amount = input("How much do you want to deposit? ")
     try:
@@ -28,6 +28,7 @@ def deposit():
     else:
         print("Enter a valid amount")
 
+
 # check balance function
 def check_balance():
     global balances
@@ -38,6 +39,7 @@ def check_balance():
     balance = balances.get(account_number, 0)
     print(f"Your current balance is GHS {balance}")
 
+
 # withdrawal function
 def withdrawal():
     global balances
@@ -45,7 +47,6 @@ def withdrawal():
     if account_number not in balances :
         print("Account not found")
         return
-
 
     amount = input("How much do you want to withdraw? ")
     try:
@@ -64,6 +65,7 @@ def withdrawal():
     else:
         print("Enter a valid amount")
 
+
 # transaction history function
 def transaction_history():
     global transaction_histories
@@ -79,7 +81,7 @@ def transaction_history():
         print("Transaction history:")
         for transaction in history:
             print(transaction)
-        
+
 
 # record transaction function
 def record_transaction(account_number, transaction_type, amount):
@@ -106,6 +108,7 @@ def main():
             print("Warning!!! Enter a valid choice")
             continue
 
+
         if choose == 1:
             deposit()
         elif choose == 2:
@@ -120,6 +123,7 @@ def main():
         else:
             print("Warning!!! Enter a valid choice")
             continue
+
 
 if __name__ == "__main__":
     main()
