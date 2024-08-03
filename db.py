@@ -1,6 +1,5 @@
 import sqlite3
 import random
-import time
 
 def create_database():
     conn = sqlite3.connect('banking_app.db')
