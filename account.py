@@ -1,20 +1,20 @@
 import sqlite3
 from transaction import Transaction
+from user import User
 
 class Account:
     def __init__(self, account_number):
         self.account_number = account_number
-        self.balance = 0.0
-
-    def get_account_number(self):
-        return self.account_number
+        self.balance = self.get_balance()
 
     def get_balance(self):
         conn = sqlite3.connect('banking_app.db')
         cursor = conn.cursor()
         cursor.execute('SELECT balance FROM balances WHERE account_number = ?', (self.account_number,))
-        self.balance = cursor.fetchone()[0]
+        result = cursor.fetchone()
         conn.close()
+        if result:
+            self.balance = result[0]
         return self.balance
 
     def deposit(self, amount):
@@ -43,7 +43,7 @@ class Account:
         conn = sqlite3.connect('banking_app.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO transactions (account_number, amount, transaction_type) VALUES (?, ?, ?)',
-                    (transaction.get_account_number(), transaction.get_amount(), transaction.get_transaction_type()))
+                    (self.account_number, transaction.get_amount(), transaction.get_transaction_type()))
         conn.commit()
         conn.close()
 
@@ -53,10 +53,11 @@ class Account:
         cursor.execute('SELECT transaction_type, amount, timestamp FROM transactions WHERE account_number = ? ORDER BY timestamp',
                     (self.account_number,))
         history = cursor.fetchall()
+        conn.close()
         if not history:
             print("No transaction history available.")
         else:
             print("Transaction history:")
             for transaction in history:
                 print(f"{transaction[0]}: GHS {transaction[1]} on {transaction[2]}")
-        conn.close()
+

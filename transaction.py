@@ -7,9 +7,6 @@ class Transaction:
         self.amount = amount
         self.timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    def get_account_number(self):
-        return self.account_number
-
     def get_transaction_type(self):
         return self.transaction_type
 
@@ -18,3 +15,6 @@ class Transaction:
 
     def get_timestamp(self):
         return self.timestamp
+
+    def get_account_number(self):
+        return self.account_number

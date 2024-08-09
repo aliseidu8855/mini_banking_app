@@ -92,7 +92,7 @@ class Bank:
         if amount >= 0:
             account = Account(account_number)
             account.deposit(amount)
-            print(f"\nYou have successfully deposited GHS {amount} to account {account_number}.\nYour new balance is {account.get_balance()}\nThank you for trusting us!\n")
+            print(f"\nYou have successfully deposited GHS {amount} to account {account_number}.\nYour new balance is GHS {account.get_balance()}\nThank you for trusting us!\n")
         else:
             print("Enter a valid amount")
 
@@ -110,7 +110,7 @@ class Bank:
             print("Insufficient balance")
         elif amount >= 0:
             account.withdraw(amount)
-            print(f"\nYou have successfully withdrawn GHS {amount} from account {account_number}\nThank you for trusting us!\n")
+            print(f"\nYou have successfully withdrawn GHS {amount} from account {account_number}.\nThank you for trusting us!\n")
         else:
             print("Enter a valid amount")
 
